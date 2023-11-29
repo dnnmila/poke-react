@@ -1,0 +1,49 @@
+.pokemon{
+    margin-top: 5rem;
+    height: 60vh;
+    width: 17%;
+    border-color: palevioletred;
+    border-style: solid;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items:center;
+    background-color:rgba(0, 0, 0, 0.9);
+}
+
+.img_pokemon{
+    height: 25vh;
+    width:10vw;
+    background-size: contain;
+    background-repeat: no-repeat;   
+    background-position: center;
+    margin-top: 4rem;
+    margin-bottom: 1rem;
+}
+
+.level_pokemon{
+    color: rgb(134, 36, 167);
+    font-size: 3rem;
+    font-family: 'Times New Roman';
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.name_pokemon{
+    color: rgb(162, 112, 216);
+    font-size: 2rem;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+.type_pokemon{
+    color: rgb(162, 112, 216);
+    font-size: 1.5rem;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+
+
+

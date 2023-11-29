@@ -1,0 +1,42 @@
+.add_pokemon{
+    margin-top: 5rem;
+    height: 60vh;
+    width: 17%;
+    border-color: palevioletred;
+    border-style: solid;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items:center;
+    background-color:rgba(0, 0, 0, 0.9);
+
+    input{ 
+        height: 3vh;
+        color: aliceblue;
+        background-color: purple ;
+        text-align: center;
+        font-size: 1rem;
+
+    }
+    button{
+        margin-top: 2rem;
+        height: 3vh;
+        width: 5vw;
+        background-color: rgb(227, 195, 229);
+        color: rgb(34, 34, 33);
+        border-radius: 60%;
+        
+    }
+    button:hover{
+            transform: scale(1.5);
+            cursor: pointer;
+       
+    }
+    
+}
+
+.Pokeball_image{
+    width: 10vw;
+    margin-top: 75%;
+    margin-bottom: 10%;
+}
