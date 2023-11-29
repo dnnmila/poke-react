@@ -51,8 +51,9 @@ def obtener_pokemons():
 
 @app.get('/pokemons/{pokedex}')
 def obtener_pokemon(pokedex: str):
+    formatted_pokedex_number = pokedex.zfill(3)
     conn = conectar_bd()
-    cursor = conn.execute('SELECT * FROM pokemons WHERE Pokedex = ?', (pokedex,))
+    cursor = conn.execute('SELECT * FROM pokemons WHERE Pokedex = ?', (formatted_pokedex_number,))
     pokemon = cursor.fetchone()
     conn.close()
     if pokemon:

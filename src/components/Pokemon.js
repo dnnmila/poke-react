@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Pokemon = ({  id,name,level,types,pokedex }) => {
+const Pokemon = ({  id,name,level,types,pokedex , onDelete}) => {
     const img_id = `img_${id}`;
     const level_id = `level_${id}`;
     const name_id = `name_${id}`;
@@ -14,7 +14,7 @@ const Pokemon = ({  id,name,level,types,pokedex }) => {
             <h1 className="level_pokemon"id={level_id}>{level} + 1</h1>
             <h1 className="name_pokemon" id={name_id}> {name}</h1>
             <h1 className="type_pokemon"id={type_id}> {types}</h1>
-            <h1 className="delete_pokemon" id={delete_id}> </h1>
+            <div className="delete_pokemon" id={delete_id} onClick={onDelete} > </div>
         </div>
     )
 };

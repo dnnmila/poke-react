@@ -14,5 +14,9 @@ export default class trainer_obj {
         }
     }
 
+    deletePokemon(pokemonId) {
+        this.team = this.team.filter(pokemon => pokemon.id !== pokemonId);
+    }
+
     // Otros métodos relacionados con el entrenador
 }

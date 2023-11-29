@@ -38,6 +38,7 @@ function App() {
     try {
         const response = await fetch(`http://localhost:8000/pokemons/${pokedexNumber}`);
         
+        
         // Comprobar si el servidor respondió con un estado exitoso
         if (!response.ok) {
             throw new Error(`No se encontró Pokémon con el número de Pokédex: ${pokedexNumber}`);
@@ -52,12 +53,13 @@ function App() {
 
         // Proceder a agregar el Pokémon si todo está bien
         const nuevoPokemon = new pokemon_obj(
-            pokemonData.id, 
-            pokemonData.name, 
-            pokemonData.level, 
-            pokemonData.types, 
-            pokedexNumber
+            pokemonData[1], 
+            pokemonData[2],
+            pokemonData[3], 
+            pokemonData[4], 
+            pokemonData[1]
         );
+        console.log(nuevoPokemon);
         setKennys(prevKennys => {
             const updatedKennys = new trainer_obj(prevKennys.name);
             updatedKennys.team = [...prevKennys.team, nuevoPokemon];
@@ -67,6 +69,14 @@ function App() {
         console.error("Error al obtener el Pokémon:", error);
         // Aquí puedes manejar el error, como mostrar un mensaje en la UI
     }
+};
+
+const deletePokemon = (pokemonId) => {
+  setKennys(prevKennys => {
+      const updatedKennys = new trainer_obj(prevKennys.name);
+      updatedKennys.team = prevKennys.team.filter(pokemon => pokemon.id !== pokemonId);
+      return updatedKennys;
+  });
 };
 
 
@@ -87,6 +97,7 @@ function App() {
         level={pokemon.level} 
         types={pokemon.types} 
         pokedex={pokemon.pokedex}
+        onDelete={() => deletePokemon(pokemon.id)}
         />
 
       ))}

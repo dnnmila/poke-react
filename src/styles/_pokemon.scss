@@ -44,6 +44,20 @@
     margin-bottom: 1rem;
 }
 
+.delete_pokemon{
+    background-image: url("../images/delete.png");
+    width: 2vw;
+    height: 5vh;
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin-top: 5rem;
+    margin-left: 20rem;
+    display: block;
+}
+.delete_pokemon:hover{
+cursor: pointer;
+transform: scale(1.5);
+}
 
 
 
