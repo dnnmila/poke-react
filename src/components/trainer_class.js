@@ -4,6 +4,7 @@ export default class trainer_obj {
     constructor(name) {
         this.name = name;
         this.team = []; // Array de objetos Pokemon
+        this.NumberofPokemons = 0;
     }
 
     addPokemon(pokemon_obj) {
