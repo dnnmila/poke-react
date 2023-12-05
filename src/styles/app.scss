@@ -64,20 +64,12 @@
 @import "./pokemon";
 @import "./addPokemon";
 @import "./_types";
+@import "./currentPlayer";
 
 
-.Title_pokeApp{
-    display: flex;
-}
 
-.All_Pokemons{
-    display: flex;
-    justify-content:last baseline;
-    align-items: flex-start;
-    gap: .5rem;
-    width:100%;
-   
-}
+
+
 .App{
     background-image: url("../images/Pokemon\ GO\ Wallpapers\ in\ Ultra\ HD\ 4K.jpg");
     background-size: cover;

@@ -1,0 +1,13 @@
+
+.Title_pokeApp{
+    display: flex;
+}
+
+.All_Pokemons{
+    display: flex;
+    justify-content:last baseline;
+    align-items: flex-start;
+    gap: .5rem;
+    width:100%;
+   
+}
