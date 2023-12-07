@@ -1,7 +1,8 @@
 //import pokemon_obj from "./pokemon_class";
 
 export default class trainer_obj {
-    constructor(name) {
+    constructor(id,name) {
+        this.id = id;
         this.name = name;
         this.team = []; // Array de objetos Pokemon
         this.NumberofPokemons = 0;

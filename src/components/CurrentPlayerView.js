@@ -1,19 +1,22 @@
-//import Style 
-import React, { useState, useEffect} from 'react';
-//ading components
+
+//adding components
 import Bagdes from './Badges';
 import Player from './Player';
 import Pokemon from './Pokemon';
 import AddPokemon from './addPokemon';
 
-import pokemon_obj from './pokemon_class';
-import trainer_obj from "./trainer_class";
-import game_obj from "./game_class";
+import pokemon_obj from './obj_Class/pokemon_class';
+
+
+import { useSelector, useDispatch } from 'react-redux';
+import { addPokemonToTrainer,deletePokemonFromTrainer, nextTurn} from '../actions/actions';
 
 
 
+const CurrentPlayerView = () =>{
 
-const CurrentPlayerView = ({game,setGame,kennys ,setKennys}) =>{
+    const game = useSelector(state => state.game);
+    const dispatch = useDispatch();
 
     const handleAddPokemon = async (pokedexNumber) => {
         try {
@@ -35,71 +38,27 @@ const CurrentPlayerView = ({game,setGame,kennys ,setKennys}) =>{
                 pokemonData[1]
             );
     
-            setGame(prevGame => {
-                const updatedGame = new game_obj();
-                updatedGame.CurrentTurn = prevGame.CurrentTurn;
-                updatedGame.Turn = prevGame.Turn;
-                updatedGame.Round = prevGame.Round;
-    
-                // Actualiza el entrenador actual con el nuevo Pokémon
-                updatedGame.Trainers = prevGame.Trainers.map((trainer, index) => {
-                    if (index === prevGame.CurrentTurn) {
-                        nuevoPokemon.id = `${trainer.name}_${trainer.NumberofPokemons + 1}_${nuevoPokemon.pokedex}`;
-                        return {
-                            ...trainer,
-                            team: [...trainer.team, nuevoPokemon],
-                            NumberofPokemons: trainer.NumberofPokemons + 1
-                        };
-                    }
-                    return trainer;
-                });
-    
-                return updatedGame;
-            });
+            // Despachar acción para agregar Pokémon al entrenador en Redux
+            const trainerId = game.Trainers[game.CurrentTurn].id;
+            dispatch(addPokemonToTrainer(trainerId, nuevoPokemon));
+            console.log(game);
         } catch (error) {
             console.error("Error al obtener el Pokémon:", error);
         }
     };
-    
-    
-    const deletePokemon = (pokemonId) => {
-        setGame(prevGame => {
-            const updatedGame = new game_obj();
-            updatedGame.CurrentTurn = prevGame.CurrentTurn;
-            updatedGame.Turn = prevGame.Turn;
-            updatedGame.Round = prevGame.Round;
-    
-            // Actualizar el equipo del entrenador actual
-            updatedGame.Trainers = prevGame.Trainers.map((trainer, index) => {
-                if (index === prevGame.CurrentTurn) {
-                    return {
-                        ...trainer,
-                        team: trainer.team.filter(pokemon => pokemon.id !== pokemonId),
-                        NumberofPokemons: trainer.team.filter(pokemon => pokemon.id !== pokemonId).length
-                    };
-                }
-                return trainer;
-            });
-    
-            return updatedGame;
-        });
+
+    const handleDeletePokemon = ( pokemonId) => {
+        const trainerId = game.Trainers[game.CurrentTurn].id;
+        dispatch(deletePokemonFromTrainer(trainerId, pokemonId));
     };
 
     const handleNextTurn = () => {
-        setGame(prevGame => {
-            const updatedGame = new game_obj();
-            updatedGame.CurrentTurn = (prevGame.CurrentTurn + 1) % prevGame.Trainers.length;
-            updatedGame.Turn = prevGame.Turn;
-            updatedGame.Round = prevGame.Round;
-            updatedGame.Trainers = prevGame.Trainers;
-            return updatedGame;
-        });
+        dispatch(nextTurn());
     };
+
     
+ 
     
-    
-    
-    console.log("Team" + game.Trainers[game.CurrentTurn]);
     return (
         <div className="CurrentPlayerView">
              <h1>Poke App </h1>
@@ -119,7 +78,7 @@ const CurrentPlayerView = ({game,setGame,kennys ,setKennys}) =>{
         type1={pokemon.type1}
         type2={pokemon.type2}  
         pokedex={pokemon.pokedex}
-        onDelete={() => deletePokemon(pokemon.id)}
+        onDelete={() => handleDeletePokemon(pokemon.id)}
        
         />
 
@@ -128,6 +87,7 @@ const CurrentPlayerView = ({game,setGame,kennys ,setKennys}) =>{
       </div>
 
       <button onClick={handleNextTurn}>Siguiente Turno</button>
+
      
         </div>
     )
